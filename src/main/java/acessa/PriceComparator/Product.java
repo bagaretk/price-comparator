@@ -6,11 +6,11 @@ import lombok.*;
 @NoArgsConstructor
 
 public class Product {
-	private String productId;
-	private String name;
-	private String category;
+	private String product_id;
+	private String product_name;
+	private String product_category;
 	private String brand;
-	private double quality;
-	private String unit;
+	private double package_quantity;
+	private String package_unit;
 }
 
