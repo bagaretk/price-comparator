@@ -1,17 +1,14 @@
 package acessa.PriceComparator;
 import com.opencsv.bean.CsvToBeanBuilder;
 
-import ch.qos.logback.core.net.SyslogOutputStream;
 import jakarta.annotation.PostConstruct;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.Socket;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.lang3.exception.UncheckedException;
 import org.springframework.stereotype.Component;
 
 
