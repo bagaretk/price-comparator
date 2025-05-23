@@ -1,11 +1,16 @@
 package acessa.PriceComparator;
-import java.math.BigDecimal;
 import java.time.LocalDate;
+
+import lombok.Builder;
+import lombok.Data;
+
+@Data
+@Builder
 
 public class PriceRecord {
 	private Product product;
 	private LocalDate date;
-	private BigDecimal price;
+	private float price;
 	private String currency;
 	private String store;
 }

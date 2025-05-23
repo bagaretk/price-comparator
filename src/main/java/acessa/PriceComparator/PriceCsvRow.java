@@ -10,6 +10,6 @@ public class PriceCsvRow {
 	@CsvBindByName private String brand;
 	@CsvBindByName private double package_quantity;
 	@CsvBindByName private String package_unit;
-	@CsvBindByName private double price;
+	@CsvBindByName private float price;
 	@CsvBindByName private String currency;
 }
