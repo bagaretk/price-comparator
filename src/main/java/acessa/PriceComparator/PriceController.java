@@ -24,6 +24,8 @@ public class PriceController {
 	public List<PriceRecord> getPricesByProduct(
 		@RequestParam(name = "productId", required = false) String productId,
 		@RequestParam(required = false) String store,
+		@RequestParam(required = false) String category,
+		@RequestParam(required = false) String brand,
 		@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date
 		) {
 		List<PriceRecord> allPriceRecords = csvLoader.getPriceRecords();
@@ -31,6 +33,8 @@ public class PriceController {
 		return allPriceRecords.stream()
 		        .filter(r -> productId == null || r.getProduct().getProduct_id().equalsIgnoreCase(productId))
 		        .filter(r -> store == null || r.getStore().equalsIgnoreCase(store))
+		        .filter(r -> category == null || r.getStore().equalsIgnoreCase(category))
+		        .filter(r -> brand == null || r.getStore().equalsIgnoreCase(brand))
 		        .filter(r -> date == null || r.getDate().isEqual(date))
 		        .collect(Collectors.toList());
 	}
