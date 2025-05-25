@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Basket Optimizer</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 2rem; }
+    input, textarea { width: 100%; margin-bottom: 1rem; padding: 0.5rem; }
+    button { padding: 0.5rem 1rem; }
+    table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+    th, td { padding: 0.5rem; border: 1px solid #ccc; text-align: left; }
+  </style>
+</head>
+<body>
+  <h1>Basket Cost Optimizer</h1>
+
+  <p>Enter product names (one per line):</p>
+  <textarea id="basketInput" rows="6" placeholder="e.g.&#10;lapte zuzu&#10;iaurt grecesc&#10;pâine albă"></textarea>
+  <button onclick="submitBasket()">Optimize</button>
+
+  <div id="results"></div>
+
+  <script>
+    async function submitBasket() {
+      const raw = document.getElementById('basketInput').value.trim();
+      if (!raw) return alert("Please enter at least one product name.");
+
+      const productNames = raw.split('\n').map(name => name.trim()).filter(Boolean);
+      const body = { basket: productNames };
+
+      const response = await fetch('/api/basket/optimize', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+      });
+
+      const data = await response.json();
+
+      let html = '<h2>Optimized Shopping List</h2>';
+      html += '<table><tr><th>Product</th><th>Store</th><th>Price (RON)</th></tr>';
+      data.forEach(item => {
+        html += `<tr>
+          <td>${item.productName}</td>
+          <td>${item.store}</td>
+          <td>${item.price.toFixed(2)}</td>
+        </tr>`;
+      });
+      html += '</table>';
+
+      document.getElementById('results').innerHTML = html;
+    }
+  </script>
+</body>
+</html>
