@@ -41,5 +41,21 @@ public class PriceController {
 		        .filter(r -> date == null || r.getDate().isEqual(date))
 		        .collect(Collectors.toList());
 	}
+	@GetMapping("/history")
+	public List<PriceRecord> getPriceHistory(
+	    @RequestParam(name = "productId") String productId,
+	    @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fromDate,
+	    @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate toDate
+	) {
+	    List<PriceRecord> allPriceRecords = csvLoader.getPriceRecords();
 
+	    LocalDate from = (fromDate != null) ? fromDate : LocalDate.MIN;
+	    LocalDate to = (toDate != null) ? toDate : LocalDate.now();
+
+	    return allPriceRecords.stream()
+	        .filter(r -> r.getProduct().getProduct_id().equalsIgnoreCase(productId))
+	        .filter(r -> !r.getDate().isBefore(from) && !r.getDate().isAfter(to))
+	        .sorted((r1, r2) -> r1.getDate().compareTo(r2.getDate()))
+	        .collect(Collectors.toList());
+	}
 }
