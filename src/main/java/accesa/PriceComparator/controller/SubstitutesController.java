@@ -1,4 +1,4 @@
-package accesa.PriceComparator;
+package accesa.PriceComparator.controller;
 
 import java.util.Comparator;
 import java.util.List;
@@ -9,12 +9,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import accesa.PriceComparator.csv.CsvLoader;
+import accesa.PriceComparator.model.SubstitutionRecommendation;
+
 @RestController
 @RequestMapping("/api/substitutes")
-public class SubstituteController {
+public class SubstitutesController {
 	private final CsvLoader csvLoader;
 		
-	public SubstituteController(CsvLoader csvLoader) {
+	public SubstitutesController(CsvLoader csvLoader) {
 		this.csvLoader = csvLoader;
 	}
 	

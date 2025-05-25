@@ -1,4 +1,4 @@
-package accesa.PriceComparator;
+package accesa.PriceComparator.controller;
 
 import java.time.LocalDate;
 import java.util.Comparator;
@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import accesa.PriceComparator.csv.CsvLoader;
+import accesa.PriceComparator.model.DiscountRecord;
 
 @RestController
 @RequestMapping("/api/discounts")

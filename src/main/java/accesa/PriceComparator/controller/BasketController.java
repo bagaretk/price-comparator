@@ -1,4 +1,4 @@
-package accesa.PriceComparator;
+package accesa.PriceComparator.controller;
 
 import java.util.Comparator;
 import java.util.List;
@@ -9,6 +9,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import accesa.PriceComparator.csv.CsvLoader;
+import accesa.PriceComparator.model.BasketRequest;
+import accesa.PriceComparator.model.OptimizedBasketItem;
+import accesa.PriceComparator.model.PriceRecord;
+import accesa.PriceComparator.service.PriceService;
 
 @CrossOrigin //so it`s callable from frontend
 @RestController

@@ -1,7 +1,10 @@
-package accesa.PriceComparator;
+package accesa.PriceComparator.service;
 
 import java.time.LocalDate;
 import org.springframework.stereotype.Service;
+
+import accesa.PriceComparator.csv.CsvLoader;
+import accesa.PriceComparator.model.PriceRecord;
 
 @Service
 public class PriceService {

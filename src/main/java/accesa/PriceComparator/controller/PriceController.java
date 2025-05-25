@@ -1,4 +1,4 @@
-package accesa.PriceComparator;
+package accesa.PriceComparator.controller;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import accesa.PriceComparator.csv.CsvLoader;
+import accesa.PriceComparator.model.PriceRecord;
 
 @RestController
 @RequestMapping("/api/prices")
@@ -33,9 +36,10 @@ public class PriceController {
 		return allPriceRecords.stream()
 		        .filter(r -> productId == null || r.getProduct().getProduct_id().equalsIgnoreCase(productId))
 		        .filter(r -> store == null || r.getStore().equalsIgnoreCase(store))
-		        .filter(r -> category == null || r.getStore().equalsIgnoreCase(category))
-		        .filter(r -> brand == null || r.getStore().equalsIgnoreCase(brand))
+		        .filter(r -> category == null || r.getProduct().getProduct_category().equalsIgnoreCase(category))
+		        .filter(r -> brand == null || r.getProduct().getBrand().equalsIgnoreCase(brand))
 		        .filter(r -> date == null || r.getDate().isEqual(date))
 		        .collect(Collectors.toList());
 	}
+
 }

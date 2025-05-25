@@ -1,4 +1,4 @@
-package accesa.PriceComparator;
+package accesa.PriceComparator.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,4 +1,4 @@
-package accesa.PriceComparator;
+package accesa.PriceComparator.model;
 
 import com.opencsv.bean.CsvBindByName;
 

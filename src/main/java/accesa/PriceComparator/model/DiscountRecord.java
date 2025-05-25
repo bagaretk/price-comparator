@@ -1,4 +1,4 @@
-package accesa.PriceComparator;
+package accesa.PriceComparator.model;
 
 import java.time.LocalDate;
 

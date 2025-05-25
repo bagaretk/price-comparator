@@ -1,6 +1,12 @@
-package accesa.PriceComparator;
+package accesa.PriceComparator.csv;
 import com.opencsv.bean.CsvToBeanBuilder;
 
+import accesa.PriceComparator.model.DiscountCsvRow;
+import accesa.PriceComparator.model.DiscountRecord;
+import accesa.PriceComparator.model.PriceAlert;
+import accesa.PriceComparator.model.PriceCsvRow;
+import accesa.PriceComparator.model.PriceRecord;
+import accesa.PriceComparator.model.Product;
 import jakarta.annotation.PostConstruct;
 
 import java.io.File;
