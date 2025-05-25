@@ -1,4 +1,4 @@
-package acessa.PriceComparator;
+package accesa.PriceComparator;
 
 import java.util.List;
 

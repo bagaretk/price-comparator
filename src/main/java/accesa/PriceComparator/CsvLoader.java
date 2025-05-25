@@ -1,4 +1,4 @@
-package acessa.PriceComparator;
+package accesa.PriceComparator;
 import com.opencsv.bean.CsvToBeanBuilder;
 
 import jakarta.annotation.PostConstruct;
@@ -20,6 +20,16 @@ public class CsvLoader {
 
 	private final List<PriceRecord> priceRecords = new ArrayList<>();
 	private final List<DiscountRecord> discountRecords = new ArrayList<>();
+	private final List<PriceAlert> alerts = new ArrayList<>();
+	
+	public void checkAlerts() {
+	    for (PriceAlert alert : alerts) {
+	        this.getPriceRecords().stream()
+	            .filter(p -> p.getProduct().getProduct_name().equalsIgnoreCase(alert.getProductName()))
+	            .filter(p -> p.getPrice() <= alert.getTargetPrice())
+	            .forEach(p -> System.out.printf("ALERT: %s is now %.2f RON at %s%n",alert.getProductName(), p.getPrice(), p.getStore()));
+	    }
+	}
 	
 	public List<PriceRecord> getPriceRecords(){
 		return priceRecords;
@@ -28,7 +38,11 @@ public class CsvLoader {
 	public List<DiscountRecord> getDiscountRecords(){
 		return discountRecords;
 	}
-		
+	
+	public List<PriceAlert> getAlerts() {
+		return alerts;
+	}
+	
 	private String extractStore(String filename) {
 		return filename.split("_")[0];
 	}

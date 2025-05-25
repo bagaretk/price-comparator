@@ -1,5 +1,6 @@
-package acessa.PriceComparator;
+package accesa.PriceComparator;
 
+import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,6 +17,17 @@ public class DiscountController {
 	
 	public DiscountController(CsvLoader loader) {
 		this.loader = loader;
+	}
+	
+	@GetMapping("/new")
+	public List<DiscountRecord> getNewDiscounts(
+			@RequestParam(name = "days", defaultValue = "1") int days
+	){
+		LocalDate threshold = LocalDate.now().minusDays(days);
+		
+		return loader.getDiscountRecords().stream()
+				.filter(d -> d.getFrom_date().isAfter(threshold))
+				.collect(Collectors.toList());
 	}
 	
 	@GetMapping("/best")

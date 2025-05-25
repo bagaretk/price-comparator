@@ -1,4 +1,4 @@
-package acessa.PriceComparator;
+package accesa.PriceComparator;
 import lombok.*;
 
 @Data
@@ -11,7 +11,7 @@ public class Product {
 	private String product_name;
 	private String product_category;
 	private String brand;
-	private double package_quantity;
+	private float package_quantity;
 	private String package_unit;
 }
 
