@@ -25,7 +25,7 @@ public class PriceController {
 	
 	@GetMapping
 	public List<PriceRecord> getPricesByProduct(
-		@RequestParam(name = "productId", required = false) String productId,
+		@RequestParam(name = "productName", required = false) String productName,
 		@RequestParam(required = false) String store,
 		@RequestParam(required = false) String category,
 		@RequestParam(required = false) String brand,
@@ -34,7 +34,7 @@ public class PriceController {
 		List<PriceRecord> allPriceRecords = csvLoader.getPriceRecords();
 
 		return allPriceRecords.stream()
-		        .filter(r -> productId == null || r.getProduct().getProduct_id().equalsIgnoreCase(productId))
+		        .filter(r -> productName == null || r.getProduct().getProduct_name().equalsIgnoreCase(productName))
 		        .filter(r -> store == null || r.getStore().equalsIgnoreCase(store))
 		        .filter(r -> category == null || r.getProduct().getProduct_category().equalsIgnoreCase(category))
 		        .filter(r -> brand == null || r.getProduct().getBrand().equalsIgnoreCase(brand))
@@ -43,7 +43,7 @@ public class PriceController {
 	}
 	@GetMapping("/history")
 	public List<PriceRecord> getPriceHistory(
-	    @RequestParam(name = "productId") String productId,
+	    @RequestParam(name = "productName") String productName,
 	    @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fromDate,
 	    @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate toDate
 	) {
@@ -53,7 +53,7 @@ public class PriceController {
 	    LocalDate to = (toDate != null) ? toDate : LocalDate.now();
 
 	    return allPriceRecords.stream()
-	        .filter(r -> r.getProduct().getProduct_id().equalsIgnoreCase(productId))
+	        .filter(r -> r.getProduct().getProduct_name().equalsIgnoreCase(productName))
 	        .filter(r -> !r.getDate().isBefore(from) && !r.getDate().isAfter(to))
 	        .sorted((r1, r2) -> r1.getDate().compareTo(r2.getDate()))
 	        .collect(Collectors.toList());
